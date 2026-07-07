@@ -144,6 +144,21 @@ export function DocumentAnalyzer({ onBack }: DocumentAnalyzerProps) {
         </button>
       </div>
 
+      {/* Selected Sample Preview */}
+      {text && (
+        <div className="mb-4">
+          <p className="mb-2 text-xs font-medium text-[var(--muted)]">
+            📄 {title}
+          </p>
+          <div className="max-h-48 overflow-y-auto rounded-xl bg-[var(--card)] px-4 py-3 text-sm leading-relaxed text-[var(--foreground)] shadow-sm">
+            {text}
+          </div>
+          <p className="mt-1 text-right text-xs text-[var(--muted)]">
+            {text.length} 文字
+          </p>
+        </div>
+      )}
+
       {/* Error */}
       {error && (
         <div className="mb-4 rounded-xl bg-red-50 p-3 text-sm text-red-600 dark:bg-red-950 dark:text-red-400">
