@@ -392,9 +392,9 @@ function StatsCard({
 }) {
   const dots = { red: "🔴", yellow: "🟡", green: "🟢" };
   const activeBg = {
-    red: "ring-2 ring-red-400 bg-red-50 text-red-900 dark:bg-red-950 dark:text-red-100",
-    yellow: "ring-2 ring-yellow-400 bg-yellow-50 text-yellow-900 dark:bg-yellow-950 dark:text-yellow-100",
-    green: "ring-2 ring-green-400 bg-green-50 text-green-900 dark:bg-green-950 dark:text-green-100",
+    red: "ring-2 ring-red-400 bg-red-50 text-red-900 dark:bg-red-900/20 dark:ring-red-500/50 dark:text-red-200",
+    yellow: "ring-2 ring-yellow-400 bg-yellow-50 text-yellow-900 dark:bg-yellow-900/20 dark:ring-yellow-500/50 dark:text-yellow-200",
+    green: "ring-2 ring-green-400 bg-green-50 text-green-900 dark:bg-green-900/20 dark:ring-green-500/50 dark:text-green-200",
   };
 
   return (
