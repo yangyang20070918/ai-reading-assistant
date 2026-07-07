@@ -107,53 +107,40 @@ export function DocumentAnalyzer({ onBack }: DocumentAnalyzerProps) {
         </p>
       </div>
 
-      {/* Title Input */}
-      <div className="mb-3">
-        <label className="mb-1 block text-xs font-medium text-[var(--muted)]">
-          文書タイトル（任意）
-        </label>
-        <input
-          type="text"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          placeholder="例: サービス利用契約書"
-          className="w-full rounded-xl bg-[var(--card)] px-4 py-2.5 text-sm text-[var(--foreground)] shadow-sm outline-none placeholder:text-[var(--muted)] focus:ring-2 focus:ring-indigo-400"
-        />
-      </div>
-
-      {/* Text Input */}
-      <div className="mb-3">
-        <label className="mb-1 block text-xs font-medium text-[var(--muted)]">
-          文書テキスト
-        </label>
-        <textarea
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-          placeholder="契約書や利用規約のテキストをここに貼り付けてください..."
-          rows={12}
-          className="w-full resize-y rounded-xl bg-[var(--card)] px-4 py-3 text-sm leading-relaxed text-[var(--foreground)] shadow-sm outline-none placeholder:text-[var(--muted)] focus:ring-2 focus:ring-indigo-400"
-        />
-        <p className="mt-1 text-right text-xs text-[var(--muted)]">
-          {text.length} 文字
+      {/* Demo Notice */}
+      <div className="mb-6 rounded-xl bg-amber-50 border border-amber-200 p-4 dark:bg-amber-950/30 dark:border-amber-800">
+        <p className="text-sm font-medium text-amber-800 dark:text-amber-300">
+          📋 Demo版: サンプル文書で分析結果をご確認いただけます
+        </p>
+        <p className="mt-1 text-xs text-amber-600 dark:text-amber-400">
+          本番環境ではClaude APIを使用し、任意の文書をリアルタイムで分析します
         </p>
       </div>
 
       {/* Sample Buttons */}
-      <div className="mb-4 flex flex-wrap gap-2">
-        <span className="text-xs text-[var(--muted)] leading-7">
-          サンプル:
-        </span>
+      <div className="mb-4 space-y-3">
+        <p className="text-sm font-medium text-[var(--foreground)]">
+          サンプル文書を選んで分析結果を確認してください
+        </p>
         <button
-          onClick={() => handleLoadSample("contract")}
-          className="rounded-lg border border-[var(--border)] px-3 py-1 text-xs text-[var(--foreground)] transition hover:bg-[var(--border)]"
+          onClick={() => { handleLoadSample("contract"); }}
+          className="flex w-full items-center gap-3 rounded-xl bg-[var(--card)] p-4 text-left shadow-sm transition hover:shadow-md hover:ring-2 hover:ring-red-400"
         >
-          高リスク契約書
+          <span className="text-2xl">⚠️</span>
+          <div>
+            <p className="text-sm font-medium text-[var(--foreground)]">高リスク契約書</p>
+            <p className="text-xs text-[var(--muted)]">自動更新・違約金・料金変更条項を含むサンプル</p>
+          </div>
         </button>
         <button
-          onClick={() => handleLoadSample("terms")}
-          className="rounded-lg border border-[var(--border)] px-3 py-1 text-xs text-[var(--foreground)] transition hover:bg-[var(--border)]"
+          onClick={() => { handleLoadSample("terms"); }}
+          className="flex w-full items-center gap-3 rounded-xl bg-[var(--card)] p-4 text-left shadow-sm transition hover:shadow-md hover:ring-2 hover:ring-green-400"
         >
-          低リスク利用規約
+          <span className="text-2xl">✅</span>
+          <div>
+            <p className="text-sm font-medium text-[var(--foreground)]">低リスク利用規約</p>
+            <p className="text-xs text-[var(--muted)]">標準的な利用規約のサンプル</p>
+          </div>
         </button>
       </div>
 
@@ -164,7 +151,7 @@ export function DocumentAnalyzer({ onBack }: DocumentAnalyzerProps) {
         </div>
       )}
 
-      {/* Analyze Button */}
+      {/* Analyze Button - only enabled after sample selection */}
       <button
         onClick={handleAnalyze}
         disabled={analyzing || !text.trim()}
@@ -175,8 +162,10 @@ export function DocumentAnalyzer({ onBack }: DocumentAnalyzerProps) {
             <span className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-white border-t-transparent" />
             AIが分析中...
           </span>
-        ) : (
+        ) : text.trim() ? (
           "リスクを分析する"
+        ) : (
+          "↑ サンプル文書を選択してください"
         )}
       </button>
 
