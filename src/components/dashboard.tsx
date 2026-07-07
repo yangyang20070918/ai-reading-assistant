@@ -392,9 +392,9 @@ function StatsCard({
 }) {
   const dots = { red: "🔴", yellow: "🟡", green: "🟢" };
   const activeBg = {
-    red: "ring-2 ring-red-400 bg-red-50 dark:bg-red-950",
-    yellow: "ring-2 ring-yellow-400 bg-yellow-50 dark:bg-yellow-950",
-    green: "ring-2 ring-green-400 bg-green-50 dark:bg-green-950",
+    red: "ring-2 ring-red-400 bg-red-50 text-red-900 dark:bg-red-950 dark:text-red-100",
+    yellow: "ring-2 ring-yellow-400 bg-yellow-50 text-yellow-900 dark:bg-yellow-950 dark:text-yellow-100",
+    green: "ring-2 ring-green-400 bg-green-50 text-green-900 dark:bg-green-950 dark:text-green-100",
   };
 
   return (
@@ -402,8 +402,8 @@ function StatsCard({
       onClick={onClick}
       className={`rounded-2xl bg-[var(--card)] p-4 text-center shadow-sm transition hover:shadow-md ${active ? activeBg[color] : ""}`}
     >
-      <p className="text-3xl font-bold text-[var(--foreground)]">{count}</p>
-      <p className="mt-1 text-sm text-[var(--muted)]">
+      <p className={`text-3xl font-bold ${active ? "text-inherit" : "text-[var(--foreground)]"}`}>{count}</p>
+      <p className={`mt-1 text-sm ${active ? "text-inherit opacity-80" : "text-[var(--muted)]"}`}>
         {dots[color]} {label}
       </p>
     </button>
